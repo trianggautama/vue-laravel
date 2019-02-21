@@ -125,11 +125,20 @@
             },
 
             createUser(){
+                this.$Progress.start();
                 this.form.post('api/user');
+                
+               $('#add').modal('hide')
+                Toast.fire({
+                            type: 'success',
+                            title: 'user created in successfully'
+                          })
+                 this.$Progress.finish();
             }
         },
         created() {
             this.loadUsers();
+            setInterval(() => this.loadUsers(), 3000);
         }
     }
 </script>
